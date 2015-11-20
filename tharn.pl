@@ -1,4 +1,4 @@
-!#/usr/bin/env perl;
+#!/usr/bin/env perl;
 use Mojolicious::Lite;
 use DBI;
 use File::Pairtree;
@@ -37,7 +37,7 @@ app->asset(
 get '/' => sub {
     my $self = shift;
     $self->render('index');
-}
+};
 
 
 get '/bigpicture' => sub {
@@ -55,12 +55,12 @@ get '/bigpicture' => sub {
 
     $self->render(json => {
         word => $word->{'word'},
-        images => $images
+        images => \@images
     }, status => 200);
-}
+};
 
 
-
+app->start;
 
 
 __DATA__

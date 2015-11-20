@@ -47,7 +47,7 @@
         ];
 
         $scope.getImages = function() {
-            df.getImages().then(function(data) {
+            tf.getImages().then(function(data) {
 
                 $scope.word = data.word;
                 $scope.images = data.images;
