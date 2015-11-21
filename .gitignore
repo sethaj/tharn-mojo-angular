@@ -1,2 +1,4 @@
 *.swp
 /public/packed
+/log
+*.db

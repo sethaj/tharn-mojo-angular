@@ -8,6 +8,9 @@ state $dbh = DBI->connect("dbi:SQLite:dbname=tharn.sqlite.2015-10-20.db","","");
 my $static = app->static();
 push @{ $static->paths }, "/home/serth/tharn.org/public/";
 
+#plugin Config => { file => 'tharn.conf' };
+plugin 'Config';
+
 plugin 'AssetPack';
 
 my @js_files = (
