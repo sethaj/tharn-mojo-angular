@@ -2,3 +2,4 @@
 /public/packed
 /log
 *.db
+azure.config
