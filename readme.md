@@ -7,3 +7,5 @@ Which means when mongo crashes the VPS again (and it will) I'm not sure how I'm 
 Anyway, seems like a quick and dirty verison using sqlite and mojo lite could work short term if need be.
 
 It's too bad, I liked the nodejs + mongo tharn.org...
+
+Replaces https://github.com/sethaj/tharn.org
