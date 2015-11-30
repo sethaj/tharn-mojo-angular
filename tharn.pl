@@ -66,16 +66,30 @@ get '/fetch' => sub {
    
     my $azure = plugin 'Config' => { file => 'azure.conf' };
     my $url = 'https://user:'
-        . $azure->key
+        . $azure->{'key'}
         . '@api.datamarket.azure.com/Data.ashx/Bing/Search/v1/Image?Query=%27'
         . $word
         .'%27&$top=20&$format=JSON';
 
     my $ua = Mojo::UserAgent->new;
-    my $res = $ua->get($url)->res->json;
+    my $res = $ua->get($url => {Accept => '*/*'})->res->json;
+
+    my @images;
+    my @thumbs;
+    for my $r (@{ $res->{'d'}->{'results'} }) {
+
+        my $image = $r->{'MediaUrl'};
+        my $thumb = $r->{'Thumbnail'}->{'MediaUrl'};
+
+        push @images, $image;
+        push @thumbs, $thumb;
+    }
     
-    $self->app->log->debug($res);
     
+    $self->render(json => { 
+        images => \@images,
+        thumbs => \@thumbs 
+    }, status => 200);
 };
 
 
