@@ -25,4 +25,5 @@ Install
 * Install [perlbrew](http://perlbrew.pl/) or [plenv](https://github.com/tokuhirom/plenv)
 
     `cpanm --installdeps .`
+
     `./server.sh`
