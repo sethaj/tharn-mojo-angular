@@ -24,5 +24,5 @@ Install
 * You need a word database and images. Not included in this repo.
 * Install [perlbrew](http://perlbrew.pl/) or [plenv](https://github.com/tokuhirom/plenv)
 
-    cpanm --installdeps .
-    ./server.sh
+    `cpanm --installdeps .`
+    `./server.sh`
