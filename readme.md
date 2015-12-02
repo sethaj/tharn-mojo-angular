@@ -1,7 +1,7 @@
 What is this thing?
 -------------------
 
-A silly site I made for fun. Makes an ~~ugly~~  _awesome_ collages of images based on a word.
+A silly site I made for fun. Makes a ~~ugly~~  _awesome_ collages of images based on a word.
 
 Since 2013 it's collected over 1,000,000 images, thumbnails and metadata over time.
 
