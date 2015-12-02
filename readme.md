@@ -1,7 +1,7 @@
 What is this thing?
 -------------------
 
-A silly site I made for fun. Makes an ugly collage of images based on a word.
+A silly site I made for fun. Makes an ~~ugly~~  _awesome_ collage of images based on a word.
 
 Why is this thing?
 ------------------
