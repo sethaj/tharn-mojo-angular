@@ -9,6 +9,8 @@ Since 2013 it's collected over 1,000,000 images, thumbnails and metadata over ti
 Why is this thing?
 ------------------
 
+Hard question. We'll see. Short answer: it replaces https://github.com/sethaj/tharn.org
+
 Dreamhost is disallowing sudo for their VPSs soon ☹
 
 http://wiki.dreamhost.com/How_to_manage_your_VPS_without_an_admin_user
@@ -19,7 +21,6 @@ Anyway, seems like a quick and dirty verison using sqlite and mojolicious lite a
 
 It's too bad, I liked the nodejs + mongo tharn.org...
 
-Replaces https://github.com/sethaj/tharn.org
 
 Install
 -------
