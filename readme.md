@@ -1,9 +1,11 @@
 What is this thing?
 -------------------
 
-A silly site I made for fun. Makes ~~ugly~~  _awesome_ collages of images based on a word.
+A silly site that makes ~~ugly~~  _awesome_ collages of images based on a word.
 
-Since 2013 it's collected over 1,000,000 images, thumbnails and metadata over time.
+Since 2013 it's collected over 1,000,000 images, thumbnails and metadata.
+
+It's basically [bigpicture-py](https://github.com/sethaj/bigpicture-py) but on the web.
 
 
 Why is this thing?
