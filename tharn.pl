@@ -90,7 +90,11 @@ get '/fetch' => sub {
     make_path($path . "/thumbs/");
     make_path($path . "/images/");
 
-    # This is blocking :P
+    # Azure is returning 'image/jpg' not 'image/jpeg', register it
+    my $types = Mojolicious::Types->new;
+    $types->mapping({ jpg => ['image/jpg'] }); 
+
+    # This is blocking 😕
     for my $r (@{ $json->{'d'}->{'results'} }) {
 
         my $im_url = $r->{'MediaUrl'};
@@ -98,9 +102,6 @@ get '/fetch' => sub {
 
         my $id = Mojo::URL->new($th_url)->query->param('id');
 
-        # Azure is returning 'image/jpg' not 'image/jpeg', register it
-        my $types = Mojolicious::Types->new;
-        $types->mapping({ jpg => ['image/jpg'] });
         my $exts = $types->detect($r->{'Thumbnail'}->{'ContentType'});
     
         # Get thumbnail
