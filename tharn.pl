@@ -61,18 +61,18 @@ get '/bigpicture' => sub {
 };
 
 
-get '/fetch' => sub {
+get '/fetch/:key' => sub {
     my $self = shift;
-    my $key = $self->param('tharn');
+    my $key = $self->stash('key');
 
     my $keys = plugin 'Config' => { file => 'keys.conf' };
-    
-    if ($key ne $keys->{'tharn'}) {
+
+    if (!$key or $key ne $keys->{'tharn'}) {
         $self->app->log->warn($self->tx->remote_address . " failed /fetch with BAD KEY");
         $self->rendered(403);
+        exit;
     }
     
-
     my $sth = $dbh->prepare("select id, word from word where images = 0 order by random() limit 1");
     $sth->execute;
     my ($word_id, $word) = $sth->fetchrow;
@@ -123,11 +123,11 @@ get '/fetch' => sub {
         # Update db
         if (-e $thumb) {
             $dbh->do("insert into thumb (word_id, file) values (?, ?)", undef, $word_id, $thumb);  
-            $self->app->log->info("Added $word, $thumb");
+            $self->app->log->info("$word_id\t$word\t$thumb");
         }
         if (-e $image) {
             $dbh->do("insert into image (word_id, file) values (?, ?)", undef, $word_id, $image);
-            $self->app->log->info("Added $word, $image");
+            $self->app->log->info("$word_id\t$word\t$image");
         }
 
     }
