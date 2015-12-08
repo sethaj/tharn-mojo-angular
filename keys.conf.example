@@ -1,0 +1,6 @@
+{
+    # an azure key to search bing for images
+    key => "",
+    # an internal key to keep outside GETs to /fetch from working (and run out the free 5000 a day from azure)
+    tharn => "" 
+}

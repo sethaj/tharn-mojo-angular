@@ -2,5 +2,5 @@
 /public/packed
 /log
 *.db
-azure.conf
+keys.conf
 tharn.pid

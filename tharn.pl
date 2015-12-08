@@ -13,7 +13,7 @@ state $dbh = DBI->connect("dbi:SQLite:dbname=tharn.db","","");
 my $static = app->static();
 push @{ $static->paths }, "/home/serth/tharn.org/public/";
 
-plugin 'Config';
+state $conf = plugin 'Config';
 
 plugin 'AssetPack';
 
@@ -63,15 +63,23 @@ get '/bigpicture' => sub {
 
 get '/fetch' => sub {
     my $self = shift;
+    my $key = $self->param('tharn');
+
+    my $keys = plugin 'Config' => { file => 'keys.conf' };
+    
+    if ($key ne $keys->{'tharn'}) {
+        $self->app->log->warn($self->tx->remote_address . " failed /fetch with BAD KEY");
+        $self->rendered(403);
+    }
+    
 
     my $sth = $dbh->prepare("select id, word from word where images = 0 order by random() limit 1");
     $sth->execute;
     my ($word_id, $word) = $sth->fetchrow;
    
-    my $azure = plugin 'Config' => { file => 'azure.conf' };
 
     my $url = 'https://user:'
-        . $azure->{'key'}
+        . $keys->{'azure'}
         . '@api.datamarket.azure.com/Data.ashx/Bing/Search/v1/Image?Query=%27'
         . $word
         .'%27&$top=20&$format=JSON';
@@ -118,7 +126,7 @@ get '/fetch' => sub {
             $self->app->log->info("Added $word, $thumb");
         }
         if (-e $image) {
-            $dbh->do("insert into image (word_id, file) values (?, ?)", undef, $word_id, $thumb);
+            $dbh->do("insert into image (word_id, file) values (?, ?)", undef, $word_id, $image);
             $self->app->log->info("Added $word, $image");
         }
 
