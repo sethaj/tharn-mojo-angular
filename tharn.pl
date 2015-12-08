@@ -102,6 +102,8 @@ get '/fetch/:key' => sub {
     my $types = Mojolicious::Types->new;
     $types->mapping({ jpg => ['image/jpg'] }); 
 
+    my $i = 0;
+
     # This is blocking 😕
     for my $r (@{ $json->{'d'}->{'results'} }) {
 
@@ -128,11 +130,14 @@ get '/fetch/:key' => sub {
         if (-e $image) {
             $dbh->do("insert into image (word_id, file) values (?, ?)", undef, $word_id, $image);
             $self->app->log->info("$word_id\t$word\t$image");
+            $i++;
         }
-
     }
 
-
+    if ($i > 0) {
+        $dbh->do("update word set images = ? where id = ?", undef, $i, $word_id);
+    }
+    
     $self->rendered(200); 
     
 };
