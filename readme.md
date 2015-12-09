@@ -11,7 +11,9 @@ It's basically [bigpicture-py](https://github.com/sethaj/bigpicture-py) but on t
 Why is this thing?
 ------------------
 
-Hard question. We'll see. Short answer: it replaces https://github.com/sethaj/tharn.org
+`¯\_(ツ)_/¯`
+
+It replaces https://github.com/sethaj/tharn.org
 
 Dreamhost is disallowing sudo for their VPSs soon ☹
 
