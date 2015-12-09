@@ -125,17 +125,16 @@ get '/fetch/:key' => sub {
         # Update db
         if (-e $thumb) {
             $dbh->do("insert into thumb (word_id, file) values (?, ?)", undef, $word_id, $thumb);  
-            $self->app->log->info("$word_id\t$word\t$thumb");
         }
         if (-e $image) {
             $dbh->do("insert into image (word_id, file) values (?, ?)", undef, $word_id, $image);
-            $self->app->log->info("$word_id\t$word\t$image");
             $i++;
         }
     }
 
     if ($i > 0) {
         $dbh->do("update word set images = ? where id = ?", undef, $i, $word_id);
+        $self->app->log->info("$word_id\t$i\t$word");
     }
     
     $self->rendered(200); 
