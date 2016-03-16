@@ -8,7 +8,7 @@ use Mojo::URL;
 use Mojolicious::Types;
 use File::Basename;
 
-state $dbh = DBI->connect("dbi:SQLite:dbname=tharn.db","","");
+our $dbh = DBI->connect("dbi:SQLite:dbname=tharn.db","","", { RaiseError => 1 });
 
 my $static = app->static();
 push @{ $static->paths }, "/home/serth/tharn.org/public/";
